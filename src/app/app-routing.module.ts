@@ -1,7 +1,14 @@
 import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { RouterModule, Routes, UrlHandlingStrategy }  from '@angular/router';
 
 const appRoutes: Routes = []
+
+export class CustomHandlingStrategy implements UrlHandlingStrategy {
+  //Change the value passed to the startsWith method to catch routes
+  shouldProcessUrl(url) { return url.toString().startsWith("/") || url.toString() === "/"; }
+  extract(url) { return url; }
+  merge(url, whole) { return url; }
+}
 
 @NgModule({
   imports: [
@@ -10,7 +17,9 @@ const appRoutes: Routes = []
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    { provide: UrlHandlingStrategy, useClass: CustomHandlingStrategy }
+  ],
   exports: [
     RouterModule
   ]
