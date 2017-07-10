@@ -1,7 +1,14 @@
-import { NgModule }              from '@angular/core';
+import { NgModule, Component }              from '@angular/core';
 import { RouterModule, Routes, UrlHandlingStrategy }  from '@angular/router';
 
-const appRoutes: Routes = []
+@Component({
+  template: `<h2>Angular 4 route</h2>`
+})
+export class ExamplePage {}
+
+const appRoutes: Routes = [
+  { path: 'example', component: ExamplePage}
+]
 
 export class CustomHandlingStrategy implements UrlHandlingStrategy {
   //Change the value passed to the startsWith method to catch routes
@@ -11,6 +18,7 @@ export class CustomHandlingStrategy implements UrlHandlingStrategy {
 }
 
 @NgModule({
+  declarations: [ExamplePage],
   imports: [
     RouterModule.forRoot(
       appRoutes,
