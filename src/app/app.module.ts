@@ -5,6 +5,7 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { UpgradedLegacyAppComponent } from './legacy/upgraded-legacy.app';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    UpgradeModule
+    UpgradeModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
